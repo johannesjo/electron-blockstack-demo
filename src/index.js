@@ -1,5 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import * as blockstack from 'blockstack';
+import { decodeToken } from 'jsontokens';
+
 import queryString from 'query-string';
 import cp from 'child_process';
 
@@ -12,6 +14,8 @@ app.on('will-quit', () => {
 });
 
 server.on('message', (m) => {
+  console.log(m);
+
   authCallback(m.authResponse)
 });
 
@@ -29,6 +33,11 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    webPreferences: {
+      scrollBounce: true,
+      webSecurity: false,
+      nodeIntegration: true,
+    },
   });
 
   // and load the index.html of the app.
@@ -54,8 +63,11 @@ app.on('ready', createWindow);
 function authCallback(authResponse) {
   // Bring app window to front
   mainWindow.focus();
+  console.log(authResponse);
 
-  const tokenPayload = blockstack.decodeToken(authResponse).payload
+
+  // const tokenPayload = blockstack.decodeToken(authResponse).payload
+  const tokenPayload = decodeToken(authResponse).payload
 
   const profileURL = tokenPayload.profile_url
   fetch(profileURL)

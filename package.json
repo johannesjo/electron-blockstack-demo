@@ -31,7 +31,7 @@
         }
     },
     "dependencies": {
-        "blockstack": "^0.14.2",
+        "blockstack": "^21.0.0",
         "cors": "^2.8.4",
         "electron-compile": "^6.4.2",
         "electron-squirrel-startup": "^1.0.0",
@@ -42,7 +42,7 @@
         "babel-preset-env": "^1.6.1",
         "babel-preset-react": "^6.24.1",
         "electron-forge": "^4.1.7",
-        "electron-prebuilt-compile": "1.8.2-beta.3",
+        "electron-prebuilt-compile": "8.2.0",
         "eslint": "^3",
         "eslint-config-airbnb": "^15",
         "eslint-plugin-import": "^2",
